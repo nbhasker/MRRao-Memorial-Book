@@ -480,6 +480,35 @@
     }
   });
 
+let startX = 0;
+let startY = 0;
+
+$("#viewer").on("pointerdown", function(e) {
+
+  if (e.pointerType === "mouse")
+      return;
+
+  startX = e.clientX;
+  startY = e.clientY;
+});
+
+$("#viewer").on("pointerup", function(e) {
+
+  if (e.pointerType === "mouse")
+      return;
+
+  const dx = e.clientX - startX;
+  const dy = e.clientY - startY;
+
+  if (Math.abs(dx) > 60 && Math.abs(dy) < 80) {
+
+    if (dx < 0)
+      $("#book").turn("next");
+    else
+      $("#book").turn("previous");
+  }
+});
+
   window.addEventListener("resize", resizeBook);
 </script>
 </body>

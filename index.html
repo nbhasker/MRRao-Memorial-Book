@@ -138,7 +138,7 @@
     }
 
     #bookWrap {
-      transition: transform 0.15s ease;
+      transition: zoom 0.15s ease;
       transform-origin: center center;
     }
 
@@ -295,10 +295,14 @@
     $("#book").turn("size", newSize.width, newSize.height);
   }
 
-  function applyZoom() {
-    $("#bookWrap").css("transform", `scale(${zoom})`);
-    $("#zoomInfo").text(Math.round(zoom * 100) + "%");
-  }
+function applyZoom() {
+  $("#bookWrap").css({
+    "zoom": zoom,
+    "transform": "none"
+  });
+
+  $("#zoomInfo").text(Math.round(zoom * 100) + "%");
+}
 
   function updatePageInfo() {
     const page = $("#book").turn("page");
